@@ -4,10 +4,18 @@ import org.kohsuke.args4j.CmdLineException;
 
 
 public class Main {
-	public Main(String[] arguments) {
-		Args args = parseArguments(arguments);
-	}
-	
+	public Main(String[] arguments){
+        Args args = parseArguments(arguments);
+        
+        Finder finder = new Finder(args);
+        for(String base: args){
+            String[] items = finder.find(base);
+            for(String item: items){
+                System.out.println(item);
+            }
+        }
+    }
+    
 	private Args parseArguments(String[] arguments){
 		Args args = new Args();
 		try {
